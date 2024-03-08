@@ -1,8 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const middleware = express();
+const db = require('mongoose');
 
+const middleware = express();
 const accountingRoutes = require('./api/routes/accounting');
+
+db.connect(
+    'mongodb+srv://rootuser:' + process.env.MONGO_DB_PW + '@accounting-tool.zudglzv.mongodb.net/?retryWrites=true&w=majority&appName=accounting-tool'
+);
 
 // Using bodyParser middleware to access body in requests
 middleware.use(bodyParser.urlencoded({ extended: false }));
